@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include("./partials/head") %>
+    <title>Document</title>
+</head>
+<body>
+    <%- include("./partials/nav") %>
+    <div class="container">
+        <h3 class="mt-4"> <%= blog.title %>  </h3>
+        <img class="mt-4" style="width: 24rem;" src="<%=  blog.coverImageUrl %>">
+        <p class="mt-4"> <%= blog.body %> </p>
+
+        <div class="row">
+                <div class="d-flex align-items-center gap-2">
+                    <img class="mt-4" style="width: 5rem;" src="<%=  blog.createdBy.profileImageUrl %>">
+                     <h4 class="ml-4 mt-2 mb-0"> <%= blog.createdBy.fullName %> </h4>
+                </div>
+           
+        </div>
+    
+    </div>
+    <div class="container mt-4">
+        <h3 class="mt-4"> Comment <%= comments.length %>  </h3>
+        <% if (locals.user) { %>
+            <form action="/blog/comment/<%= blog.id %>" method="post">
+                <div class="mb-3 mt-3">
+                  <label for="content" class="form-label">Comment</label>
+                  <input type="text" name="content" class="form-control" id="content" >
+                </div>
+                
+                <button type="submit" class="btn btn-primary mt-2">Submit</button>
+              </form>
+
+         
+        <% } %>
+        <% comments.forEach(comment => { %>
+            <div class="d-flex align-items-center gap-2">
+                <img class="mt-4" style="width: 3rem;" src="<%=  comment.createdBy.profileImageUrl %>">
+                 <h6 class="ml-4 mt-4 mb-0"> <%= comment.createdBy.fullName %> </h6>
+            </div>
+            <p class="mt-2"><%= comment.content %> </p>
+         
+        <% }) %>
+    </div>
+    <%- include("./partials/scripts") %>
+</body>
+</html>
