@@ -1,6 +1,8 @@
 const Jwt = require("jsonwebtoken")
-
+//secert key
 const secret = "SAB7500"; 
+
+//create Token
 function createTokenForUser(user) {
     const payload = {
         _id: user._id,
