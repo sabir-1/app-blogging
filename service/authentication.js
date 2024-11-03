@@ -13,11 +13,11 @@ function createTokenForUser(user) {
     const token = Jwt.sign(payload, secret)
     return token;
 }
-function validateToken(token) {
+function validateToken(token) { 
     const payload = Jwt.verify(token, secret)
     return payload
 }
-module.exports = {
+module.exports = { 
     createTokenForUser,
     validateToken
 
